@@ -91,50 +91,24 @@
 	</head>
 	
 	<div class="head">
-		{{ info.name }}<br>
+		Charles Rymal<br>
 	</div>
 	<hr>
 	<div class="subhead">
-		{% if 'private' in version %}
-		<div style="text-align: left; width: 200px; float: left">
-			{% for l in info.contact.address.lines %}
-				{{ l }}<br>
-			{% endfor %}
-		</div>
-		<div style="text-align: right; width: 200px; float: right">
-			{{ info.contact.phone }}<br>
-			<a href="mailto:{{ info.contact.email }}">
-				{{ info.contact.email }}
-			</a><br>
-		</div>
-		{% endif %}
-		<div style="text-align: center; width: 100%;">
-			<span class="web">
-				<a href="http://{{ info.contact.webpage }}">
-					this information and more
-				</a>
-			</span>
-			<span class="print">
-				this information and more at<br>
-				{{ info.contact.webpage }}
-			</span>
-		</div>
+		
+		<!--<a href="http://chuck1.github.io">chuck1.github.io</a><br>-->
 	</div>
 	
-	{% if info.objective %}
+	
 	<!-- Objective -->
 	<div class="container">
 		<h1>Objective</h1>
 		<div class="content">
-			{{ info.objective[0].text }}
+			To obtain a position at None in the computer science field in order to apply and enhance knowledge gained through my passion for computer science.
 		</div>
 	</div>
-	{% endif %}
+	
 
-	{% for part in parts %}
-	{{ part }}
-	{% endfor %}
+	
 
 </html>
-
-

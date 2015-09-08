@@ -54,6 +54,9 @@ def filter_json(j, versions):
             filter_json(v, versions)
 
 class Class:
+    """
+    convert json dict to python class
+    """
     def __init__(self, name, j):
         if not isinstance(j, dict):
             raise ValueError('must be dict')
@@ -201,6 +204,8 @@ class Generator:
         self.loader = Loader()
         self.env = jinja2.Environment(loader=self.loader)
 
+        self.output_dir = "output"
+
     def get_template(self, name):
         return self.env.get_template(name)
 
@@ -219,18 +224,6 @@ class Generator:
     def get_dir_in(self):
         return os.path.join('input', self.get_dir())
 
-    def load_json_file(self, filename):
-        with open(filename, 'r') as f:
-            s = f.read()
-
-        self.load_json(s)
-
-    def load_json(self, j):
-        #j = json.loads(s)
-
-        c = Class("",j)
-
-        self.info = c
 
     def filt(self, versions, sel_id):
         """
@@ -269,7 +262,7 @@ class Generator:
         else:
             raise ValueError("Invalid part code: {}".format(c))
 
-    def filename_out(self, pre, post):
+    def get_filename_out(self, pre, post):
         if self.company:
             return "{}_{}_{}{}".format(pre, clean(self.company), clean(self.position), post)
         else:
@@ -278,7 +271,7 @@ class Generator:
     def get_path_out(self, pre, post):
         return os.path.join(
                 self.get_dir_out(),
-                self.filename_out(pre, post))
+                self.get_filename_out(pre, post))
 
     def render_odt(self):
 
@@ -301,30 +294,29 @@ class Generator:
         
         return self.render_text_2(temp)
         
-    def render_text_2(self, template_str):
+    def render_text_2(self, template):
         """
         for text files only
         render parts to variables, then render together, then return
         """
         
-
         parts = []
         for c in self.order:
             #print "part",c
             parts.append(self.render_string_part(c))
         
         context = {
-                'company': self.company,
+                'company':  self.company,
                 'position': self.position,
-                'parts': parts,
-                'info':  self.info,
-                'version': self.version,
+                'version':  self.version,
+                'parts':    parts,
+                'info':     self.user.info,
                 #'args':  self.args,
                 }
 
         obj = self.render_string("objective.html", context) 
   
-        output = render_string_2(template_str, context)
+        output = render_string_2(template, context)
 
         return output
 
@@ -334,16 +326,18 @@ class Generator:
         render parts to variables, then render pre+post+'.in'
         """
    
-        filename_in = os.path.join('templates',pre+post)
-        with open(filename_in, 'r') as f:
-            ts = f.read()
 
-        filename_out = self.filename_out(pre, post)
-        
-        output = self.render_text_2(ts)
+        temp = self.get_template(pre+post)
+
+        output = self.render_text_2(temp)
     
         fo = self.get_path_out(pre, post)
-    
+       
+        try:
+            os.makedirs(os.path.dirname(fo))
+        except:
+            pass
+
         with open(fo,"w") as f:
             f.write(output)
 
