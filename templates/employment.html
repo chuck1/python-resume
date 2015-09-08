@@ -1,0 +1,30 @@
+<!-- Employment -->
+<!-- page-break-inside property not working in Chrome, use manual page break instead -->
+<div class="container"> <!--style="page-break-before: always"-->
+	<h1 class="title_header">Employment</h1>
+	<div class="content">
+		<table class="cols">
+			{% for e in info.employment %}
+			<tr>
+				<td><b>{{ e.title }}</b></td>
+				<td><b>{{ e.duration }}</b></td>
+			</tr>
+			<tr>
+				<td><b>{{ e.employer }}</b> - {{ e.location }}</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<ul>
+						{% for l in e.desc %}<li>{{ l.text }}</li>
+						{% endfor %}
+					</ul>
+				</td>
+			</tr>
+			<!--
+			<tr><td></br></td></tr>
+			-->
+			{% endfor %}
+		</table>
+	</div>
+</div>

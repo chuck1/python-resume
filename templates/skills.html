@@ -1,0 +1,19 @@
+<div class="container">
+	<h1 class="title_header">Skills</h1>
+	<!--<div class="header">expand</div>-->
+	<div class="content">
+		<ul>
+			{% for item in info.skills.list %}
+			<li>{{ item.text }}</li>
+			{% endfor %}
+		</ul>
+		<table class="borders">
+			{% for r in info.skills.table %}
+			<tr>
+				<td>{{ r.col[0] }}</td><td>{{ r.col[1] }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+</div>
+

@@ -1,0 +1,137 @@
+<html>
+	<!-- this page needs to be standalone, no links to style or script files -->
+	<head>
+		<style>
+			body {
+				font-family: Arial, Helvetica, sans-serif;
+				margin: 1.5in;
+				padding: 0px;
+			}
+			div {
+				margin-top:    0px;
+				margin-bottom: 0px;
+			}
+			.header{	text-align:center; }
+			.print {	display:none; }
+			.web {		display:inline; }
+			.cols td {	width:400px; }
+			td.wide {	width: auto; }
+			div.note {
+				background-color: #eee;
+				border: 1px solid #ccc;
+				float: left;
+			}
+			
+			div.form {
+				border-style: solid;
+				border-width: 1px;
+				border-color: #888888;
+				padding: 10px;
+				float: left;
+			}
+			div.topbar {
+				background-color: #8888ff;
+			}
+			.note-title {
+				font-weight:bold;
+			}
+			.head {
+				text-align:center;
+				font-size:1.5em;
+			}
+			.subhead {
+				text-align:center;
+				/*font-size:1.5em;*/
+				overflow: hidden;
+			}
+			.container {
+				text-align:left;
+				margin-top:    10px;
+				margin-bottom: 10px;
+			}
+			.container .content {
+				display: inline;
+				margin-top: 5px;
+				margin-bottom: 5px;
+			}
+			h1 {
+				font-size:1.5em;
+				margin: 0px;
+			}
+			h2 {
+				font-size:1.17em;
+				margin-top: 0.5em;
+				margin-bottom: 0.5em;
+			}
+			table.borders, table.borders td {
+				border: 1px solid;
+				border-collapse: collapse;
+			}
+			table.borders td {
+				padding: 5px;
+			}
+			@media print {
+				.container .content {
+					display: inline;
+					padding: 0px;
+					page-break-inside: avoid;
+				}
+				div.note { display:none; }
+				.header { display:none; }
+				@page {
+					size:8.5in 11in
+				}
+				body {
+					margin:0.0in
+				}
+				.print { display:inline; }
+				.web { display:none; }
+			}
+		</style>
+	</head>
+	
+	<div class="head">
+		{{ info.name }}<br>
+	</div>
+	<hr>
+	<div class="subhead">
+		{% if 'private' in version %}
+			<div style="text-align: left; width: 200px; float: left">
+				{% for l in info.contact.address.lines %}
+					{{ l }}<br>
+				{% endfor %}
+			</div>
+			<div style="text-align: right; width: 200px; float: right">
+				{{ info.contact.phone }}<br>
+				<a href="mailto:{{ info.contact.email }}">{{ info.contact.email }}</a><br>
+			</div>
+			<div style="text-align: center; width: 100%;">
+				<span class="web">
+					<a href="http://chuck1.github.io">this information and more</a>
+				</span>
+				<span class="print">
+					this information and more at<br>
+					chuck1.github.io
+				</span>
+			</div>
+		{% endif %}
+		<!--<a href="http://{{ info.contact.webpage }}">{{ info.contact.webpage }}</a><br>-->
+	</div>
+	
+	{% if info.objective %}
+	<!-- Objective -->
+	<div class="container">
+		<h1>Objective</h1>
+		<div class="content">
+			{{ info.objective[0].text }}
+		</div>
+	</div>
+	{% endif %}
+
+	{% for part in parts %}
+	{{ part }}
+	{% endfor %}
+
+</html>
+
+

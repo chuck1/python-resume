@@ -1,0 +1,8 @@
+setup.py
+python_resume/__init__.py
+python_resume/info.py
+python_resume/xml_tools.py
+python_resume.egg-info/PKG-INFO
+python_resume.egg-info/SOURCES.txt
+python_resume.egg-info/dependency_links.txt
+python_resume.egg-info/top_level.txt

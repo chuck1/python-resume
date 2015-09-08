@@ -1,0 +1,20 @@
+{% if info.projects %}
+<div class="container">
+	<h1 class="title_header">Personal Projects</h1>
+	<div class="content">
+		<ul>
+			{% for p in info.projects %}
+			<li>
+			<a class="web" href="{{ p.link }}">{{ p.text }}</a>
+			<span class="print">{{ p.text }} ({{ p.link }})</span>
+			</li>
+			{% endfor %}
+		</ul>
+		<!--
+			<a class="web" href="http://www.github.com/chuck1">github</a>
+			<span class="print">http://www.github.com/chuck1</span>
+		-->
+	</div>
+</div>
+{% endif %}
+

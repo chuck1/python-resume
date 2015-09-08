@@ -1,0 +1,36 @@
+<div class="container">
+	<h1 class="title_header">Education</h1>
+	<div class="content">
+		<table class="cols">
+			{% for e in info.education %}
+
+			<tr>
+				<td><b>{{ e.degree }} in {{ e.major }}</b></td><td></td>
+			</tr>
+			<tr>
+				<td>{{ e.school }}</td><td>{{ e.location }}</td>
+			</tr>
+			<tr>
+				<td>
+					{{ e.date_start.strftime("%B %Y") }} to
+					{{ e.date_end.strftime("%B %Y") }}
+				</td>
+				<td>GPA: {{ e.gpa }}</td>
+			</tr>
+			{% if e.courses %}
+			<tr colspan="2">
+				<td class="wide" colspan="2"><b>Relevant Courses:</b>
+					<table>
+						{% for c in e.courses %}
+						<tr><td class="wide">{{ c.text }}</td></tr>
+						{% endfor %}
+					</table>
+				</td>
+			</tr>
+			{% endif %}
+			<tr><td style="padding-bottom: 10px;"></td></tr>
+			{% endfor %}
+		</table>
+	</div>
+</div>
+

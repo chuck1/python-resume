@@ -1,0 +1,164 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: package python_resume</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>python_resume</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/chuck/home/git/python_resume/python_resume/__init__.py">/home/chuck/home/git/python_resume/python_resume/__init__.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Package Contents</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="python_resume.info.html">info</a><br>
+</td><td width="25%" valign=top><a href="python_resume.xml_tools.html">xml_tools</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="jinja2.loaders.html#BaseLoader">jinja2.loaders.BaseLoader</a>(<a href="__builtin__.html#object">__builtin__.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="python_resume.html#Loader">Loader</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="python_resume.html#Class">Class</a>
+</font></dt><dt><font face="helvetica, arial"><a href="python_resume.html#Generator">Generator</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Class">class <strong>Class</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Class-__init__"><strong>__init__</strong></a>(self, name, j)</dt></dl>
+
+<dl><dt><a name="Class-filt"><strong>filt</strong></a>(self, versions, sel_id)</dt></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="Class-value_or_class"><strong>value_or_class</strong></a>(k, v)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Generator">class <strong>Generator</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Generator-__init__"><strong>__init__</strong></a>(self, version<font color="#909090">=None</font>, company<font color="#909090">=None</font>, position<font color="#909090">=None</font>, order<font color="#909090">=[]</font>)</dt></dl>
+
+<dl><dt><a name="Generator-filename_out"><strong>filename_out</strong></a>(self, pre, post)</dt></dl>
+
+<dl><dt><a name="Generator-filt"><strong>filt</strong></a>(self, versions, sel_id)</dt><dd><tt>remove&nbsp;json&nbsp;objects&nbsp;based&nbsp;on&nbsp;versions&nbsp;and&nbsp;selector&nbsp;values</tt></dd></dl>
+
+<dl><dt><a name="Generator-get_dir"><strong>get_dir</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Generator-get_dir_in"><strong>get_dir_in</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Generator-get_dir_out"><strong>get_dir_out</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Generator-get_path_out"><strong>get_path_out</strong></a>(self, pre, post)</dt></dl>
+
+<dl><dt><a name="Generator-get_template"><strong>get_template</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="Generator-load"><strong>load</strong></a>(self, filename)</dt><dd><tt>load&nbsp;personal&nbsp;information&nbsp;from&nbsp;xml&nbsp;file</tt></dd></dl>
+
+<dl><dt><a name="Generator-load_json"><strong>load_json</strong></a>(self, j)</dt></dl>
+
+<dl><dt><a name="Generator-load_json_file"><strong>load_json_file</strong></a>(self, filename)</dt></dl>
+
+<dl><dt><a name="Generator-render"><strong>render</strong></a>(self, pre, post)</dt><dd><tt>for&nbsp;text&nbsp;files&nbsp;only<br>
+render&nbsp;parts&nbsp;to&nbsp;variables,&nbsp;then&nbsp;render&nbsp;pre+post+'.in'</tt></dd></dl>
+
+<dl><dt><a name="Generator-render_html"><strong>render_html</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Generator-render_odt"><strong>render_odt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Generator-render_pdf"><strong>render_pdf</strong></a>(self)</dt><dd><tt>convert&nbsp;previously&nbsp;rendered&nbsp;html&nbsp;to&nbsp;pdf&nbsp;using&nbsp;linux&nbsp;tool&nbsp;'wkhtmltopdf'</tt></dd></dl>
+
+<dl><dt><a name="Generator-render_string"><strong>render_string</strong></a>(self, template_name, context)</dt></dl>
+
+<dl><dt><a name="Generator-render_string_part"><strong>render_string_part</strong></a>(self, c)</dt></dl>
+
+<dl><dt><a name="Generator-render_text"><strong>render_text</strong></a>(self, temp<font color="#909090">=None</font>, name<font color="#909090">=None</font>, fmt<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="Generator-render_text_2"><strong>render_text_2</strong></a>(self, template_str)</dt><dd><tt>for&nbsp;text&nbsp;files&nbsp;only<br>
+render&nbsp;parts&nbsp;to&nbsp;variables,&nbsp;then&nbsp;render&nbsp;together,&nbsp;then&nbsp;return</tt></dd></dl>
+
+<dl><dt><a name="Generator-write"><strong>write</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Loader">class <strong>Loader</strong></a>(<a href="jinja2.loaders.html#BaseLoader">jinja2.loaders.BaseLoader</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="python_resume.html#Loader">Loader</a></dd>
+<dd><a href="jinja2.loaders.html#BaseLoader">jinja2.loaders.BaseLoader</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Loader-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Loader-get_source"><strong>get_source</strong></a>(self, environment, template)</dt></dl>
+
+<dl><dt><a name="Loader-store_template"><strong>store_template</strong></a>(self, template, s)</dt></dl>
+
+<hr>
+Methods inherited from <a href="jinja2.loaders.html#BaseLoader">jinja2.loaders.BaseLoader</a>:<br>
+<dl><dt><a name="Loader-list_templates"><strong>list_templates</strong></a>(self)</dt><dd><tt>Iterates&nbsp;over&nbsp;all&nbsp;templates.&nbsp;&nbsp;If&nbsp;the&nbsp;loader&nbsp;does&nbsp;not&nbsp;support&nbsp;that<br>
+it&nbsp;should&nbsp;raise&nbsp;a&nbsp;:exc:`TypeError`&nbsp;which&nbsp;is&nbsp;the&nbsp;default&nbsp;behavior.</tt></dd></dl>
+
+<dl><dt><a name="Loader-load"><strong>load</strong></a>(self, environment, name, globals<font color="#909090">=None</font>)</dt><dd><tt>Loads&nbsp;a&nbsp;template.&nbsp;&nbsp;This&nbsp;method&nbsp;looks&nbsp;up&nbsp;the&nbsp;template&nbsp;in&nbsp;the&nbsp;cache<br>
+or&nbsp;loads&nbsp;one&nbsp;by&nbsp;calling&nbsp;:meth:`get_source`.&nbsp;&nbsp;Subclasses&nbsp;should&nbsp;not<br>
+override&nbsp;this&nbsp;method&nbsp;as&nbsp;loaders&nbsp;working&nbsp;on&nbsp;collections&nbsp;of&nbsp;other<br>
+loaders&nbsp;(such&nbsp;as&nbsp;:class:`PrefixLoader`&nbsp;or&nbsp;:class:`ChoiceLoader`)<br>
+will&nbsp;not&nbsp;call&nbsp;this&nbsp;method&nbsp;but&nbsp;`get_source`&nbsp;directly.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="jinja2.loaders.html#BaseLoader">jinja2.loaders.BaseLoader</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="jinja2.loaders.html#BaseLoader">jinja2.loaders.BaseLoader</a>:<br>
+<dl><dt><strong>has_source_access</strong> = True</dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-clean"><strong>clean</strong></a>(s)</dt></dl>
+ <dl><dt><a name="-filter_json"><strong>filter_json</strong></a>(j, versions)</dt></dl>
+ <dl><dt><a name="-findall_by_version"><strong>findall_by_version</strong></a>(e, t, versions)</dt></dl>
+ <dl><dt><a name="-get_element_by_version"><strong>get_element_by_version</strong></a>(e, t, versions)</dt></dl>
+ <dl><dt><a name="-read_xml"><strong>read_xml</strong></a>(filename, v<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-render_string"><strong>render_string</strong></a>(filename, context)</dt><dd><tt>using&nbsp;jinja2,&nbsp;double&nbsp;render&nbsp;template&nbsp;at&nbsp;filename+'.in'&nbsp;with&nbsp;context&nbsp;and&nbsp;return&nbsp;output</tt></dd></dl>
+ <dl><dt><a name="-render_string_2"><strong>render_string_2</strong></a>(temp, context)</dt></dl>
+</td></tr></table>
+</body></html>

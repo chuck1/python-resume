@@ -1,0 +1,46 @@
+
+
+<div class="head">
+	{{ info.name }}<br>
+</div>
+<hr>
+<div class="subhead">
+	{% if 'private' in version %}
+	<div style="text-align: left; width: 200px; float: left">
+		{% for l in info.contact.address.lines %}
+		{{ l }}<br>
+		{% endfor %}
+	</div>
+	<div style="text-align: right; width: 200px; float: right">
+		{{ info.contact.phone }}<br>
+		<a href="mailto:{{ info.contact.email }}">{{ info.contact.email }}</a><br>
+	</div>
+	<div style="text-align: center; width: 100%;">
+		<span class="web">
+			<a href="http://chuck1.github.io">this information and more</a>
+		</span>
+		<span class="print">
+			this information and more at<br>
+			chuck1.github.io
+		</span>
+	</div>
+	{% endif %}
+	<!--<a href="http://{{ info.contact.webpage }}">{{ info.contact.webpage }}</a><br>-->
+</div>
+
+<!-- Objective -->
+{% if info.objective %}
+<div class="container">
+	<h1>Objective</h1>
+	<div class="content">
+		{{ info.objective[0].text }}
+	</div>
+</div>
+{% endif %}
+
+{% for part in parts %}
+{{ part }}
+{% endfor %}
+
+
+
