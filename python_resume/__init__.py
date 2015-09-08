@@ -4,7 +4,6 @@ import jinja2
 import os
 import sys
 import argparse
-import xml.etree.ElementTree as ET
 import subprocess
 import datetime
 import locale
@@ -159,14 +158,6 @@ def findall_by_version(e, t, versions):
             if child.attrib['version'] == v:
                 yield child
  
-def read_xml(filename, v=None):
-    
-    tree = ET.parse(filename)
-    root = tree.getroot()
-
-    info = Info(root, v)
-
-    return info
 
 def render_string(filename, context):
     """
@@ -227,16 +218,6 @@ class Generator:
 
     def get_dir_in(self):
         return os.path.join('input', self.get_dir())
-
-    def load(self, filename):
-        """
-        load personal information from xml file
-        """
-        tree = ET.parse(os.path.join('input',filename))
-        root = tree.getroot()
-        
-        self.info = Info()
-        self.info.load_xml(root, self.version)
 
     def load_json_file(self, filename):
         with open(filename, 'r') as f:
