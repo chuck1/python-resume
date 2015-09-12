@@ -12,116 +12,13 @@ import locale
 import datetime
 import secretary
 
+import python_resume.user
+
 #from info import *
 
 #def get_default_template_str(name, fmt):
 #    with open(os.path.join(TEMPLATE_DIR, name+'.'+fmt), 'r') as f:
 #        return f.read()
-
-def filter_json(j, versions):
-    #print "filer_json:",versions
-    versions_set = set(versions)
-
-    def test(x):
-        if isinstance(x, dict):
-            if x.has_key('version'):
-                vs = set(x['version'])
-                #print "comparing", vs, versions_set
-                if not vs.issubset(versions_set):
-                    return False
-        return True
-    
-    for k,v in j.items():
-        #print " ",k,v
-        if isinstance(v, list):
-
-            c_old = len(v)
-
-            #setattr(j, k, list(x for x in v if test(x)))
-            j[k] = list(x for x in v if test(x))
-
-            c_new = len(v)
-
-            if c_old != c_new:
-                #print "  removed {} elements".format(c_old-c_new)
-                pass
-
-            for l in v:
-                if isinstance(l, dict):
-                    filter_json(l, versions)
-        
-        elif isinstance(v, dict):
-            filter_json(v, versions)
-
-class Class:
-    """
-    convert json dict to python class
-    """
-    def __init__(self, name, j):
-        if not isinstance(j, dict):
-            raise ValueError('must be dict')
-
-        self.name = name
-
-        if name == '_selector':
-            self.j = j
-        else:
-            for k,v in j.items():
-                setattr(self, k, Class.value_or_class(k,v))
-
-    def filt(self, versions, sel_id):
-        #print "Class.filt", versions
-        versions_set = set(versions)
-
-        def test(x):
-            if not isinstance(x, Class):
-                return True
-                
-            if hasattr(x, 'version'):
-                vs = set(x.version)
-                #print "comparing", vs, versions_set
-                if not vs.issubset(versions_set):
-                    return False
-
-            if hasattr(x, '_selector'):
-                #print "has _selector"
-                #print x._selector.j
-                try:
-                    o = x._selector.j[str(sel_id)]
-                except:
-                    pass
-                else:
-                    #print "_selector[{}] = {}".format(sel_id, o)
-                    if not o:
-                        return False
-
-            return True
-        
-        for k,v in self.__dict__.items():
-            #print " ",k,v
-            if isinstance(v, list):
-                setattr(self, k, list(x for x in v if test(x)))
-
-                for l in v:
-                    if isinstance(l, Class):
-                        l.filt(versions, sel_id)
-            
-            elif isinstance(v, Class):
-                v.filt(versions, sel_id)
-                
-
-    @staticmethod
-    def value_or_class(k,v):
-        if isinstance(v, dict):
-            return Class(k,v)
-        elif isinstance(v, list):
-            return list(Class.value_or_class('',l) for l in v)
-        else:
-            if k.startswith("date_"):
-                locale.setlocale(locale.LC_ALL, 'en_US.utf8')
-                return datetime.datetime.strptime(v, "%x")
-            else:
-                return v
 
 
 
@@ -185,7 +82,7 @@ class Generator:
             self,
             #path_to_data,
             #output_dir = '',
-            version = None,
+            versions = None,
             company = None,
             position = None,
             #overwrite = False,
@@ -195,41 +92,60 @@ class Generator:
 
         #self.path_to_data = path_to_data
         #self.output_dir = output_dir
-        self.version = version
-        self.company = company
-        self.position = position
+        self.versions   = versions
+        self.company    = company
+        self.position   = position
         #self.overwrite = overwrite
         self.order = order
+
+        if self.company is None:
+            self.versions.append('nocompany')
+        else:
+            self.versions.append('company')
 
         self.loader = Loader()
         self.env = jinja2.Environment(loader=self.loader)
 
-        self.output_dir = "output"
+        self.output_dir = os.path.join(os.getcwd(), "output")
 
     def get_template(self, name):
         return self.env.get_template(name)
 
     def get_dir(self):
         if self.company is None:
-            return os.path.join("_".join(self.version))
+            return os.path.join("_".join(self.versions))
         else:
             return os.path.join(
                     clean(self.company),
                     clean(self.position),
-                    "_".join(self.version))
-
+                    "_".join(self.versions))
+    
     def get_dir_out(self):
         return os.path.join(self.output_dir, self.get_dir())
 
     def get_dir_in(self):
         return os.path.join('input', self.get_dir())
 
+    def get_filename_out(self, pre, post):
+        if self.company:
+            return "{}{}".format(
+                    "_".join([pre, clean(self.company), clean(self.position)]+self.versions),
+                    post)
+        else:
+            return "{}{}".format(
+                    "_".join([pre]+self.versions),
+                    post)
 
-    def filt(self, versions, sel_id):
+    def get_path_out(self, pre, post):
+        return os.path.join(
+                self.get_dir_out(),
+                self.get_filename_out(pre, post))
+
+    def filt(self, sel_id=None):
         """
         remove json objects based on versions and selector values
         """
-        self.info.filt(versions, sel_id)
+        self.user.info.filt(self.versions, sel_id)
 
     def render_string(self, template_name, context):
         temp = self.get_template(template_name)
@@ -243,13 +159,7 @@ class Generator:
 
     def render_string_part(self, c):
         
-        context = {
-                'position': self.position,
-                'company': self.company,
-                'info':    self.info,
-                'version': self.version,
-                #'args':  self.args,
-                }
+        context = self.get_context()
        
         if c == 'a':
             return self.render_string("education.html", context)
@@ -262,23 +172,22 @@ class Generator:
         else:
             raise ValueError("Invalid part code: {}".format(c))
 
-    def get_filename_out(self, pre, post):
-        if self.company:
-            return "{}_{}_{}{}".format(pre, clean(self.company), clean(self.position), post)
-        else:
-            return "{}{}".format(pre, post)
 
-    def get_path_out(self, pre, post):
-        return os.path.join(
-                self.get_dir_out(),
-                self.get_filename_out(pre, post))
+    def get_context(self):
+        d = {
+                'company':  self.company,
+                'position': self.position,
+                'version':  self.versions,
+                'info':     self.user.info,
+                }
+        return d
 
     def render_odt(self):
 
         engine = secretary.Renderer()
         result = engine.render("templates/resume.odt",
-                info=self.info,
-                version=self.version,
+                version =   self.versions,
+                info =      self.user.info,
                 #args=self.args
                 )
         
@@ -308,7 +217,7 @@ class Generator:
         context = {
                 'company':  self.company,
                 'position': self.position,
-                'version':  self.version,
+                'version':  self.versions,
                 'parts':    parts,
                 'info':     self.user.info,
                 #'args':  self.args,
@@ -320,12 +229,14 @@ class Generator:
 
         return output
 
-    def render(self, pre, post):
+    def render(self, filename):
         """
         for text files only
         render parts to variables, then render pre+post+'.in'
         """
    
+        pre, post = os.path.splitext(filename)
+
 
         temp = self.get_template(pre+post)
 
@@ -341,11 +252,11 @@ class Generator:
         with open(fo,"w") as f:
             f.write(output)
 
-    def render_pdf(self):
+    def render_pdf(self, filename):
         """
         convert previously rendered html to pdf using linux tool 'wkhtmltopdf'
         """
-
+        """
         for s in ["resume", "cover_letter", ]:
 
             cmd = [
@@ -358,6 +269,24 @@ class Generator:
             p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
     
             output = p.communicate()
+        """
+        
+        h,t = os.path.splitext(filename)
+        if t != '.html':
+            raise ValueError()
+        
+        cmd = [
+                'wkhtmltopdf',
+                '-q',
+                self.get_path_out(h,t),
+                self.get_path_out(h,t+".pdf")
+                ]
+    
+        print cmd
+
+        p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+    
+        output = p.communicate()
 
     def render_html(self):
         for s in ["resume", "cover_letter", ]:

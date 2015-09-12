@@ -97,7 +97,7 @@
 	<div class="subhead">
 		{% if 'private' in version %}
 		<div style="text-align: left; width: 200px; float: left">
-			{% for l in info.contact.address.lines %}
+			{% for l in info.contact.address.line %}
 				{{ l }}<br>
 			{% endfor %}
 		</div>
@@ -106,19 +106,17 @@
 			<a href="mailto:{{ info.contact.email }}">
 				{{ info.contact.email }}
 			</a><br>
+			<a href="http://{{ info.contact.webpage }}">
+				{{ info.contact.webpage }}
+			</a>
+		</div>
+		{% else %}
+		<div style="text-align: center; width: 100%;">
+			<a href="http://{{ info.contact.webpage }}">
+				{{ info.contact.webpage }}
+			</a>
 		</div>
 		{% endif %}
-		<div style="text-align: center; width: 100%;">
-			<span class="web">
-				<a href="http://{{ info.contact.webpage }}">
-					this information and more
-				</a>
-			</span>
-			<span class="print">
-				this information and more at<br>
-				{{ info.contact.webpage }}
-			</span>
-		</div>
 	</div>
 	
 	{% if info.objective %}

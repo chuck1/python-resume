@@ -1,0 +1,284 @@
+<html>
+	<!-- this page needs to be standalone, no links to style or script files -->
+	<head>
+		<style>
+			body {
+				font-family: Arial, Helvetica, sans-serif;
+				margin: 1.5in;
+				padding: 0px;
+			}
+			div {
+				margin-top:    0px;
+				margin-bottom: 0px;
+			}
+			.header{	text-align:center; }
+			.print {	display:none; }
+			.web {		display:inline; }
+			.cols td {	width:400px; }
+			td.wide {	width: auto; }
+			div.note {
+				background-color: #eee;
+				border: 1px solid #ccc;
+				float: left;
+			}
+			
+			div.form {
+				border-style: solid;
+				border-width: 1px;
+				border-color: #888888;
+				padding: 10px;
+				float: left;
+			}
+			div.topbar {
+				background-color: #8888ff;
+			}
+			.note-title {
+				font-weight:bold;
+			}
+			.head {
+				text-align:center;
+				font-size:1.5em;
+			}
+			.subhead {
+				text-align:center;
+				/*font-size:1.5em;*/
+				overflow: hidden;
+			}
+			.container {
+				text-align:left;
+				margin-top:    10px;
+				margin-bottom: 10px;
+			}
+			.container .content {
+				display: inline;
+				margin-top: 5px;
+				margin-bottom: 5px;
+			}
+			h1 {
+				font-size:1.5em;
+				margin: 0px;
+			}
+			h2 {
+				font-size:1.17em;
+				margin-top: 0.5em;
+				margin-bottom: 0.5em;
+			}
+			table.borders, table.borders td {
+				border: 1px solid;
+				border-collapse: collapse;
+			}
+			table.borders td {
+				padding: 5px;
+			}
+			@media print {
+				.container .content {
+					display: inline;
+					padding: 0px;
+					page-break-inside: avoid;
+				}
+				div.note { display:none; }
+				.header { display:none; }
+				@page {
+					size:8.5in 11in
+				}
+				body {
+					margin:0.0in
+				}
+				.print { display:inline; }
+				.web { display:none; }
+			}
+		</style>
+	</head>
+	
+	<div class="head">
+		Charles Rymal<br>
+	</div>
+	<hr>
+	<div class="subhead">
+		
+		<div style="text-align: left; width: 200px; float: left">
+			
+				16234 SW O'Neill Ct.<br>
+			
+				Tigard, OR 97223<br>
+			
+		</div>
+		<div style="text-align: right; width: 200px; float: right">
+			(503) 720-6499<br>
+			<a href="mailto:charlesrymal@gmail.com">
+				charlesrymal@gmail.com
+			</a><br>
+			<a href="http://www.charlesrymal.com">
+				www.charlesrymal.com
+			</a>
+		</div>
+		
+	</div>
+	
+	
+
+	<div class="container">
+	<h1 class="title_header">Education</h1>
+	<div class="content">
+		<table class="cols">
+			
+
+			<tr>
+				<td><b>Master of Science in Mechanical Engineering</b></td><td></td>
+			</tr>
+			<tr>
+				<td>Oregon State University</td><td>Corvallis, Oregon</td>
+			</tr>
+			<tr>
+				<td>
+					April 2012 to
+					March 2015
+				</td>
+				<td>GPA: 3.91</td>
+			</tr>
+			
+			<tr><td style="padding-bottom: 10px;"></td></tr>
+			
+
+			<tr>
+				<td><b>Bachelor of Science in Mechanical Engineering</b></td><td></td>
+			</tr>
+			<tr>
+				<td>Oregon State University</td><td>Corvallis, Oregon</td>
+			</tr>
+			<tr>
+				<td>
+					September 2007 to
+					March 2012
+				</td>
+				<td>GPA: 3.78</td>
+			</tr>
+			
+			<tr><td style="padding-bottom: 10px;"></td></tr>
+			
+		</table>
+	</div>
+</div>
+
+	<!-- Employment -->
+<!-- page-break-inside property not working in Chrome, use manual page break instead -->
+<div class="container"> <!--style="page-break-before: always"-->
+	<h1 class="title_header">Employment</h1>
+	<div class="content">
+		<table class="cols">
+			
+			<tr>
+				<td><b>Graduate Research Assistant</b></td>
+				<td><b>September 2012 to September 2014</b></td>
+			</tr>
+			<tr>
+				<td><b>Oregon State University</b> - Corvallis, OR</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<ul>
+						<li>Title of research - Numerical Design of a High-Flux Microchannel Solar Receiver.</li>
+						<li>Project was funded by the US Dept. of Energy SunShot Initiative.</li>
+						<li>Worked with faculty and other students to design microchannel receivers for solar thermal power production</li>
+						<li>Performed numerical simulations of heat transfer and fluid flow using commercial software: Ansys Fluent and StarCCM+</li>
+						<li>Assessed pressure drop, thermal efficiency, structural integrity and flow distribution</li>
+						<li>Published two conference papers for the ASME conference on Energy Sustainability</li>
+						<li>Used C, Java, Python, Bash scripts, Make, and Tcl for automation, customization, and data analysis of numerical simulations</li>
+						
+					</ul>
+				</td>
+			</tr>
+			<!--
+			<tr><td></br></td></tr>
+			-->
+			
+			<tr>
+				<td><b>MECOP Engineering Intern</b></td>
+				<td><b>March 2011 to September 2011</b></td>
+			</tr>
+			<tr>
+				<td><b>Allied Systems Company</b> - Sherwood, OR</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<ul>
+						<li>Managed several plant-wide manufacturing engineering projects with significant benefit for the company</li>
+						<li>Designed various tooling, particularly welding fixtures, with consideration for ease of use and manufacturability</li>
+						<li>Worked extensively with design engineers, manufacturing engineers, machinists, welders, and many others</li>
+						
+					</ul>
+				</td>
+			</tr>
+			<!--
+			<tr><td></br></td></tr>
+			-->
+			
+			<tr>
+				<td><b>MECOP Engineering Intern</b></td>
+				<td><b>March 2010 to September 2010</b></td>
+			</tr>
+			<tr>
+				<td><b>ATI Wah Chang</b> - Albany, OR</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<ul>
+						<li>Designed material handling equipment for various applications</li>
+						<li>Performed stress analysis calculations as well as FEA on equipment designs</li>
+						<li>Designed creative mechanical solutions to issues with existing machinery</li>
+						<li>Worked with area operators, supervisors, mechanical engineers, and outside fabrication contractors</li>
+						
+					</ul>
+				</td>
+			</tr>
+			<!--
+			<tr><td></br></td></tr>
+			-->
+			
+		</table>
+	</div>
+</div>
+	<div class="container">
+	<h1 class="title_header">Skills</h1>
+	<!--<div class="header">expand</div>-->
+	<div class="content">
+		<ul>
+			
+			<li>3 years of experience using CAD software (Solidworks and Inventor)</li>
+			
+			<li>experience using FEA, heat transfer analysis, and CFD software (Ansys and Star-CCM+)</li>
+			
+			<li>experience using geometric dimensioning and tolerancing</li>
+			
+			<li>proficient in several programming languages (c++, java, MATLAB, python)</li>
+			
+			<li>working knowledge of Microsoft Office (including Excel, Access, and Visual Basic)</li>
+			
+			<li>excellent written and verbal communication skills</li>
+			
+		</ul>
+		<table class="borders">
+			
+			<tr>
+				<td>applications</td><td>SolidWorks, AutoCAD Inventor, Ansys Fluent, StarCCM+, Microsoft Visual Studio, LabVIEW, Microsoft Office</td>
+			</tr>
+			
+			<tr>
+				<td>systems</td><td>Microsoft Windows, Red Hat, Debian, Ubuntu</td>
+			</tr>
+			
+			<tr>
+				<td>programming languages</td><td>C/C++, Python, MatLab, x86 assembly, Java, VBA, HTML, Javascript, PHP, SQL, TCL, make, CMake, bash, lisp</td>
+			</tr>
+			
+		</table>
+	</div>
+</div>
+
+	
+
+
+</html>

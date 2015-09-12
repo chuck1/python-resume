@@ -14,7 +14,7 @@ setup(
     author='Charles Rymal',
     author_email='charlesrymal@gmail.com',
     url='https://www.github.com/chuck1/python-resume/',
-    packages=['python_resume'],
+    packages=['python_resume', 'python_resume.user'],
     #package_data={'python_resume':['templates/*']},
     data_files=[
         ('python_resume/templates', template_files),

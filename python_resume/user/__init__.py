@@ -12,46 +12,6 @@ import locale
 import datetime
 import secretary
 
-#from info import *
-
-#def get_default_template_str(name, fmt):
-#    with open(os.path.join(TEMPLATE_DIR, name+'.'+fmt), 'r') as f:
-#        return f.read()
-
-def filter_json(j, versions):
-    #print "filer_json:",versions
-    versions_set = set(versions)
-
-    def test(x):
-        if isinstance(x, dict):
-            if x.has_key('version'):
-                vs = set(x['version'])
-                #print "comparing", vs, versions_set
-                if not vs.issubset(versions_set):
-                    return False
-        return True
-    
-    for k,v in j.items():
-        #print " ",k,v
-        if isinstance(v, list):
-
-            c_old = len(v)
-
-            #setattr(j, k, list(x for x in v if test(x)))
-            j[k] = list(x for x in v if test(x))
-
-            c_new = len(v)
-
-            if c_old != c_new:
-                #print "  removed {} elements".format(c_old-c_new)
-                pass
-
-            for l in v:
-                if isinstance(l, dict):
-                    filter_json(l, versions)
-        
-        elif isinstance(v, dict):
-            filter_json(v, versions)
 
 class Class:
     """
@@ -85,11 +45,17 @@ class Class:
                 else:
                     print indent+"  "+str(v)
 
-    def filt(self, versions, sel_id):
+    def filt(self, versions, sel_id=None):
+        """
+        remove irrelevant items from data
+        """
         #print "Class.filt", versions
         versions_set = set(versions)
 
         def test(x):
+            """
+            return true is item should be kept
+            """
             if not isinstance(x, Class):
                 return True
                 
@@ -97,19 +63,21 @@ class Class:
                 vs = set(x.version)
                 #print "comparing", vs, versions_set
                 if not vs.issubset(versions_set):
+                    print "{} is not subset of {}".format(vs, versions_set)
                     return False
 
-            if hasattr(x, '_selector'):
-                #print "has _selector"
-                #print x._selector.j
-                try:
-                    o = x._selector.j[str(sel_id)]
-                except:
-                    pass
-                else:
-                    #print "_selector[{}] = {}".format(sel_id, o)
-                    if not o:
-                        return False
+            if sel_id:
+                if hasattr(x, '_selector'):
+                    #print "has _selector"
+                    #print x._selector.j
+                    try:
+                        o = x._selector.j[str(sel_id)]
+                    except:
+                        pass
+                    else:
+                        #print "_selector[{}] = {}".format(sel_id, o)
+                        if not o:
+                            return False
 
             return True
         
