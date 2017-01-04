@@ -237,7 +237,6 @@ class Generator:
    
         pre, post = os.path.splitext(filename)
 
-
         temp = self.get_template(pre+post)
 
         output = self.render_text_2(temp)
